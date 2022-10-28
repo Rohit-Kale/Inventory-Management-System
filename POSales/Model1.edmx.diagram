@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d13cbec254f54b3ab28108ad99863ed1" Name="Diagram1">
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbAdjustment" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbBrand" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbCancel" Width="1.5" PointX="2.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbCart" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbCategory" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbProduct" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbStockIn" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbSupplier" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbUser" Width="1.5" PointX="4.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPDBSupermarketModel.tbStore" Width="1.5" PointX="2.75" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="RPDBSupermarketModel.FK_tbProduct_tbBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="RPDBSupermarketModel.FK_tbCart_tbProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="RPDBSupermarketModel.FK_tbStockIn_tbProduct" ManuallyRouted="false" />
+        <AssociationConnector Association="RPDBSupermarketModel.FK_tbStockIn_tbSupplier" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

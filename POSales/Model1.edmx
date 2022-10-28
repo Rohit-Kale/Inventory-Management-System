@@ -1,0 +1,561 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RPDBSupermarketModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbAdjustment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="referenceno" Type="varchar" MaxLength="50" />
+          <Property Name="pcode" Type="varchar" MaxLength="50" />
+          <Property Name="qty" Type="int" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+          <Property Name="remarks" Type="varchar" MaxLength="50" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="user" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbBrand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbCancel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transno" Type="varchar" MaxLength="50" />
+          <Property Name="pcode" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="qty" Type="int" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="voidby" Type="varchar" MaxLength="50" />
+          <Property Name="cancelledby" Type="varchar" MaxLength="50" />
+          <Property Name="reason" Type="text" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbCart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transno" Type="varchar" MaxLength="50" />
+          <Property Name="pcode" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="qty" Type="int" />
+          <Property Name="disc_percent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="disc" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="cashier" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProduct">
+          <Key>
+            <PropertyRef Name="pcode" />
+          </Key>
+          <Property Name="pcode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="barcode" Type="varchar" MaxLength="50" />
+          <Property Name="pdesc" Type="varchar(max)" Nullable="false" />
+          <Property Name="bid" Type="int" Nullable="false" />
+          <Property Name="cid" Type="int" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="qty" Type="int" />
+          <Property Name="reorder" Type="int" />
+        </EntityType>
+        <EntityType Name="tbStockIn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="refno" Type="varchar" MaxLength="50" />
+          <Property Name="pcode" Type="varchar" MaxLength="50" />
+          <Property Name="qty" Type="int" />
+          <Property Name="sdate" Type="datetime" />
+          <Property Name="stockinby" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="supplierid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'RPDBSupermarket.dbo.tbStore' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tbStore">
+          <Key>
+            <PropertyRef Name="store" />
+          </Key>
+          <Property Name="store" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbSupplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="text" Nullable="false" />
+          <Property Name="contactperson" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fax" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isactivate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tbCart_tbProduct">
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="0..1" />
+          <End Role="tbCart" Type="Self.tbCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProduct">
+              <PropertyRef Name="pcode" />
+            </Principal>
+            <Dependent Role="tbCart">
+              <PropertyRef Name="pcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProduct_tbBrand">
+          <End Role="tbBrand" Type="Self.tbBrand" Multiplicity="1" />
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBrand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbProduct">
+              <PropertyRef Name="bid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStockIn_tbProduct">
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="0..1" />
+          <End Role="tbStockIn" Type="Self.tbStockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProduct">
+              <PropertyRef Name="pcode" />
+            </Principal>
+            <Dependent Role="tbStockIn">
+              <PropertyRef Name="pcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStockIn_tbSupplier">
+          <End Role="tbSupplier" Type="Self.tbSupplier" Multiplicity="0..1" />
+          <End Role="tbStockIn" Type="Self.tbStockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSupplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbStockIn">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RPDBSupermarketModelStoreContainer">
+          <EntitySet Name="tbAdjustment" EntityType="Self.tbAdjustment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbBrand" EntityType="Self.tbBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCancel" EntityType="Self.tbCancel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCart" EntityType="Self.tbCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbCategory" EntityType="Self.tbCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProduct" EntityType="Self.tbProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbStockIn" EntityType="Self.tbStockIn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbSupplier" EntityType="Self.tbSupplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbStore" EntityType="Self.tbStore" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tbStore].[store] AS [store], 
+[tbStore].[address] AS [address]
+FROM [dbo].[tbStore] AS [tbStore]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tbCart_tbProduct" Association="Self.FK_tbCart_tbProduct">
+            <End Role="tbProduct" EntitySet="tbProduct" />
+            <End Role="tbCart" EntitySet="tbCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProduct_tbBrand" Association="Self.FK_tbProduct_tbBrand">
+            <End Role="tbBrand" EntitySet="tbBrand" />
+            <End Role="tbProduct" EntitySet="tbProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStockIn_tbProduct" Association="Self.FK_tbStockIn_tbProduct">
+            <End Role="tbProduct" EntitySet="tbProduct" />
+            <End Role="tbStockIn" EntitySet="tbStockIn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStockIn_tbSupplier" Association="Self.FK_tbStockIn_tbSupplier">
+            <End Role="tbSupplier" EntitySet="tbSupplier" />
+            <End Role="tbStockIn" EntitySet="tbStockIn" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPDBSupermarketModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbAdjustment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="referenceno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbBrand">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbProducts" Relationship="Self.FK_tbProduct_tbBrand" FromRole="tbBrand" ToRole="tbProduct" />
+        </EntityType>
+        <EntityType Name="tbCancel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="voidby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cancelledby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbCart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="disc_percent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="disc" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cashier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbProduct" Relationship="Self.FK_tbCart_tbProduct" FromRole="tbCart" ToRole="tbProduct" />
+        </EntityType>
+        <EntityType Name="tbCategory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProduct">
+          <Key>
+            <PropertyRef Name="pcode" />
+          </Key>
+          <Property Name="pcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pdesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bid" Type="Int32" Nullable="false" />
+          <Property Name="cid" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="reorder" Type="Int32" />
+          <NavigationProperty Name="tbBrand" Relationship="Self.FK_tbProduct_tbBrand" FromRole="tbProduct" ToRole="tbBrand" />
+          <NavigationProperty Name="tbCarts" Relationship="Self.FK_tbCart_tbProduct" FromRole="tbProduct" ToRole="tbCart" />
+          <NavigationProperty Name="tbStockIns" Relationship="Self.FK_tbStockIn_tbProduct" FromRole="tbProduct" ToRole="tbStockIn" />
+        </EntityType>
+        <EntityType Name="tbStockIn">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="refno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="sdate" Type="DateTime" Precision="3" />
+          <Property Name="stockinby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="supplierid" Type="Int32" />
+          <NavigationProperty Name="tbProduct" Relationship="Self.FK_tbStockIn_tbProduct" FromRole="tbStockIn" ToRole="tbProduct" />
+          <NavigationProperty Name="tbSupplier" Relationship="Self.FK_tbStockIn_tbSupplier" FromRole="tbStockIn" ToRole="tbSupplier" />
+        </EntityType>
+        <EntityType Name="tbSupplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contactperson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbStockIns" Relationship="Self.FK_tbStockIn_tbSupplier" FromRole="tbSupplier" ToRole="tbStockIn" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="isactivate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbStore">
+          <Key>
+            <PropertyRef Name="store" />
+          </Key>
+          <Property Name="store" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tbProduct_tbBrand">
+          <End Role="tbBrand" Type="Self.tbBrand" Multiplicity="1" />
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbBrand">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbProduct">
+              <PropertyRef Name="bid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCart_tbProduct">
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="0..1" />
+          <End Role="tbCart" Type="Self.tbCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProduct">
+              <PropertyRef Name="pcode" />
+            </Principal>
+            <Dependent Role="tbCart">
+              <PropertyRef Name="pcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStockIn_tbProduct">
+          <End Role="tbProduct" Type="Self.tbProduct" Multiplicity="0..1" />
+          <End Role="tbStockIn" Type="Self.tbStockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProduct">
+              <PropertyRef Name="pcode" />
+            </Principal>
+            <Dependent Role="tbStockIn">
+              <PropertyRef Name="pcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbStockIn_tbSupplier">
+          <End Role="tbSupplier" Type="Self.tbSupplier" Multiplicity="0..1" />
+          <End Role="tbStockIn" Type="Self.tbStockIn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbSupplier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbStockIn">
+              <PropertyRef Name="supplierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RPDBSupermarketEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbAdjustments" EntityType="Self.tbAdjustment" />
+          <EntitySet Name="tbBrands" EntityType="Self.tbBrand" />
+          <EntitySet Name="tbCancels" EntityType="Self.tbCancel" />
+          <EntitySet Name="tbCarts" EntityType="Self.tbCart" />
+          <EntitySet Name="tbCategories" EntityType="Self.tbCategory" />
+          <EntitySet Name="tbProducts" EntityType="Self.tbProduct" />
+          <EntitySet Name="tbStockIns" EntityType="Self.tbStockIn" />
+          <EntitySet Name="tbSuppliers" EntityType="Self.tbSupplier" />
+          <EntitySet Name="tbUsers" EntityType="Self.tbUser" />
+          <EntitySet Name="tbStores" EntityType="Self.tbStore" />
+          <AssociationSet Name="FK_tbProduct_tbBrand" Association="Self.FK_tbProduct_tbBrand">
+            <End Role="tbBrand" EntitySet="tbBrands" />
+            <End Role="tbProduct" EntitySet="tbProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCart_tbProduct" Association="Self.FK_tbCart_tbProduct">
+            <End Role="tbProduct" EntitySet="tbProducts" />
+            <End Role="tbCart" EntitySet="tbCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStockIn_tbProduct" Association="Self.FK_tbStockIn_tbProduct">
+            <End Role="tbProduct" EntitySet="tbProducts" />
+            <End Role="tbStockIn" EntitySet="tbStockIns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbStockIn_tbSupplier" Association="Self.FK_tbStockIn_tbSupplier">
+            <End Role="tbSupplier" EntitySet="tbSuppliers" />
+            <End Role="tbStockIn" EntitySet="tbStockIns" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RPDBSupermarketModelStoreContainer" CdmEntityContainer="RPDBSupermarketEntities1">
+          <EntitySetMapping Name="tbAdjustments">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbAdjustment">
+              <MappingFragment StoreEntitySet="tbAdjustment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="referenceno" ColumnName="referenceno" />
+                <ScalarProperty Name="pcode" ColumnName="pcode" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="user" ColumnName="user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbBrands">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbBrand">
+              <MappingFragment StoreEntitySet="tbBrand">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="brand" ColumnName="brand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCancels">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbCancel">
+              <MappingFragment StoreEntitySet="tbCancel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transno" ColumnName="transno" />
+                <ScalarProperty Name="pcode" ColumnName="pcode" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="voidby" ColumnName="voidby" />
+                <ScalarProperty Name="cancelledby" ColumnName="cancelledby" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="action" ColumnName="action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCarts">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbCart">
+              <MappingFragment StoreEntitySet="tbCart">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="transno" ColumnName="transno" />
+                <ScalarProperty Name="pcode" ColumnName="pcode" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="disc_percent" ColumnName="disc_percent" />
+                <ScalarProperty Name="disc" ColumnName="disc" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="cashier" ColumnName="cashier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbCategories">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbCategory">
+              <MappingFragment StoreEntitySet="tbCategory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProducts">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbProduct">
+              <MappingFragment StoreEntitySet="tbProduct">
+                <ScalarProperty Name="pcode" ColumnName="pcode" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="pdesc" ColumnName="pdesc" />
+                <ScalarProperty Name="bid" ColumnName="bid" />
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="reorder" ColumnName="reorder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbStockIns">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbStockIn">
+              <MappingFragment StoreEntitySet="tbStockIn">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="refno" ColumnName="refno" />
+                <ScalarProperty Name="pcode" ColumnName="pcode" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="stockinby" ColumnName="stockinby" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="supplierid" ColumnName="supplierid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbSuppliers">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbSupplier">
+              <MappingFragment StoreEntitySet="tbSupplier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="supplier" ColumnName="supplier" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contactperson" ColumnName="contactperson" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUsers">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbUser">
+              <MappingFragment StoreEntitySet="tbUser">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="isactivate" ColumnName="isactivate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbStores">
+            <EntityTypeMapping TypeName="RPDBSupermarketModel.tbStore">
+              <MappingFragment StoreEntitySet="tbStore">
+                <ScalarProperty Name="store" ColumnName="store" />
+                <ScalarProperty Name="address" ColumnName="address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
