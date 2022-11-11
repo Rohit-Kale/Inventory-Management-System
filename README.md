@@ -8,6 +8,13 @@
 ##### Front End : Windows Form
 ##### Back end : MySQL Server
 
+##### - This project provides all functionality of the user which is same as windows application.
+ ##### - In this project we implement connection between application and data source.
+##### - It provides necessary buttons in Windows Form to display all the functionality.
+##### - This system gives alert notifications for insufficient products.
+##### - In this project used the ADO.Net framework and Microsoft SQL and VS Code to implement Application
+##### - CRUD operations used.
+
 ## Advantages -
 ##### 1. This supermarket management system aims at full automation of big,medium and mini supermarkets / inventories.
 ##### 2. This system should be reliable,fast,user-friendly and informative.
