@@ -1,4 +1,4 @@
-## Coditation-Task-Inventory-Management-System
+## Inventory-Management-System
 
 ##### This project developed using .Net programming language .This project is targeted for mainly big supermarkets / Inventory which completely automates the end to end process of retail supermarket purchase,inventory,sales and billing process .This project implemented in asp.net using SQL server as the database.
 
